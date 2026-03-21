@@ -1,44 +1,59 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function StreamList() {
   const [userInput, setUserInput] = useState("");
+  const [items, setItems] = useState(() => {
+    const savedItems = localStorage.getItem("streamlistItems");
+    return savedItems ? JSON.parse(savedItems) : [];
+  });
 
-  const events = [
-    {
-      id: 1,
-      icon: "event",
-      title: "Friday Watch Party",
-      date: "March 15, 2026",
-      description: "Join your group to watch a featured action movie together.",
-    },
-    {
-      id: 2,
-      icon: "playlist_add_check",
-      title: "Group List Updated",
-      date: "March 17, 2026",
-      description: "Melissa added 3 new comedy films to the shared StreamList.",
-    },
-    {
-      id: 3,
-      icon: "credit_card",
-      title: "Subscription Reminder",
-      date: "March 20, 2026",
-      description: "Review your subscription plan and payment settings.",
-    },
-    {
-      id: 4,
-      icon: "movie",
-      title: "New Release Alert",
-      date: "March 22, 2026",
-      description: "A newly added movie is now available to stream in the app.",
-    },
-  ];
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("streamlistItems", JSON.stringify(items));
+  }, [items]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("User input:", userInput);
-    alert(`You searched for: ${userInput}`);
+
+    if (!userInput.trim()) return;
+
+    const newItem = {
+      id: Date.now(),
+      title: userInput,
+      completed: false,
+    };
+
+    setItems([...items, newItem]);
     setUserInput("");
+  };
+
+  const handleDelete = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
+
+  const handleComplete = (id) => {
+    setItems(
+      items.map((item) =>
+        item.id === id ? { ...item, completed: !item.completed } : item
+      )
+    );
+  };
+
+  const handleEdit = (id, title) => {
+    setEditId(id);
+    setEditText(title);
+  };
+
+  const handleSaveEdit = (id) => {
+    setItems(
+      items.map((item) =>
+        item.id === id ? { ...item, title: editText } : item
+      )
+    );
+    setEditId(null);
+    setEditText("");
   };
 
   return (
@@ -46,46 +61,69 @@ function StreamList() {
       <section className="hero-section">
         <h1>Welcome to StreamList</h1>
         <p>
-          Search for movies, track shared activity, and stay updated on events
-          from EZTechMovie.
+          Add movies or watch events, manage your list, and keep your saved items
+          even after refreshing the page.
         </p>
       </section>
 
       <section className="search-section">
-        <h2>Find a Movie</h2>
+        <h2>Add to Your StreamList</h2>
         <form onSubmit={handleSubmit} className="movie-form">
           <input
             type="text"
-            placeholder="Enter a movie title"
+            placeholder="Enter a movie or event"
             value={userInput}
             onChange={(event) => setUserInput(event.target.value)}
           />
-          <button type="submit">
-            <span className="material-symbols-outlined">search</span>
-            Search
-          </button>
+          <button type="submit">Add</button>
         </form>
       </section>
 
       <section className="events-section">
-        <h2>Upcoming User Events</h2>
-        <div className="events-grid">
-          {events.map((eventItem) => (
-            <article key={eventItem.id} className="event-card">
-              <div className="event-icon">
-                <span className="material-symbols-outlined">
-                  {eventItem.icon}
-                </span>
-              </div>
+        <h2>Your Saved List</h2>
 
-              <div className="event-content">
-                <h3>{eventItem.title}</h3>
-                <p className="event-date">{eventItem.date}</p>
-                <p>{eventItem.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        {items.length === 0 ? (
+          <p>No items added yet.</p>
+        ) : (
+          <div className="events-grid">
+            {items.map((item) => (
+              <article key={item.id} className="event-card">
+                {editId === item.id ? (
+                  <>
+                    <input
+                      type="text"
+                      value={editText}
+                      onChange={(e) => setEditText(e.target.value)}
+                    />
+                    <button onClick={() => handleSaveEdit(item.id)}>Save</button>
+                  </>
+                ) : (
+                  <>
+                    <h3
+                      style={{
+                        textDecoration: item.completed ? "line-through" : "none",
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+
+                    <button onClick={() => handleComplete(item.id)}>
+                      {item.completed ? "Undo" : "Complete"}
+                    </button>
+
+                    <button onClick={() => handleEdit(item.id, item.title)}>
+                      Edit
+                    </button>
+
+                    <button onClick={() => handleDelete(item.id)}>
+                      Delete
+                    </button>
+                  </>
+                )}
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
