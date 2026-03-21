@@ -30,59 +30,40 @@ function Movies() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <main className="movies-page">
       <h1>Search Movies</h1>
 
-      <input
-        type="text"
-        placeholder="Search for a movie..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <div className="movie-search-form">
+        <input
+          type="text"
+          placeholder="Search for a movie..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
 
-      <button onClick={searchMovies}>Search</button>
+        <button onClick={searchMovies}>Search</button>
+      </div>
 
       {error && <p>{error}</p>}
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "1rem",
-          marginTop: "2rem",
-        }}
-      >
+      <div className="movies-grid">
         {movies.map((movie) => (
-          <div key={movie.id} style={{ width: "180px" }}>
+          <article key={movie.id} className="movie-card">
             {movie.poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                 alt={movie.title}
-                style={{ width: "100%" }}
               />
             ) : (
-              <div
-                style={{
-                  width: "100%",
-                  height: "270px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#ccc",
-                  textAlign: "center",
-                  padding: "10px",
-                }}
-              >
-                No Poster Available
-              </div>
+              <div className="no-poster">No Poster Available</div>
             )}
 
             <p><strong>{movie.title}</strong></p>
             <p>{movie.release_date || "No release date"}</p>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </main>
   );
 }
 

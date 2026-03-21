@@ -187,3 +187,28 @@ body {
   padding: 1rem;
   font-size: 0.9rem;
 }
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.event-card button {
+  font-family: inherit;
+  padding: 0.65rem 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.event-card input {
+  font-family: inherit;
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: none;
+}
