@@ -2,32 +2,26 @@ import { Routes, Route } from "react-router";
 import Navbar from "./components/Navbar";
 import StreamList from "./pages/StreamList";
 import Movies from "./pages/Movies";
-import { CartProvider } from './CartContext';
-// ... other imports
-
-function App() {
-  return (
-    <CartProvider>
-      <div className="App">
-        {/* Your existing components like Navbar and Routes */}
-      </div>
-    </CartProvider>
-  );
-}
+import Subscriptions from "./pages/Subscriptions";
+import Cart from "./pages/Cart";
 import About from "./pages/About";
+import { CartProvider } from "./CartContext";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<StreamList />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </>
+    <CartProvider>
+      <>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<StreamList />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/subscriptions" element={<Subscriptions />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </>
+    </CartProvider>
   );
 }
 

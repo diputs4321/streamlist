@@ -41,3 +41,16 @@
   background: #ff4d4d;
   color: white;
 }
+
+.cart-footer {
+  margin-top: 1.5rem;
+  text-align: right;
+  font-weight: bold;
+}
+
+.warning-label {
+  color: #b00020;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+

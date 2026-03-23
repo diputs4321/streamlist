@@ -1,44 +1,101 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState(() => {
-    // Check Local Storage on load
-    const saved = localStorage.getItem('streamCart');
+    const saved = localStorage.getItem("streamCart");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Save to Local Storage whenever the cart changes
+  const [warning, setWarning] = useState("");
+  const location = useLocation();
+
   useEffect(() => {
-    localStorage.setItem('streamCart', JSON.stringify(cartItems));
+    localStorage.setItem("streamCart", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  useEffect(() => {
+    setWarning("");
+  }, [location.pathname]);
+
+  const isSubscription = (item) => item.id >= 1 && item.id <= 4;
+
   const addToCart = (item) => {
-    setCartItems(prev => {
-      const exists = prev.find(i => i.id === item.id);
-      if (exists) {
-        return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
+    let newWarning = "";
+
+    setCartItems((prev) => {
+      const existingItem = prev.find((i) => i.id === item.id);
+      const existingSubscription = prev.find((i) => isSubscription(i));
+
+      if (isSubscription(item)) {
+        if (existingItem || existingSubscription) {
+          newWarning = "Only one subscription can be added at a time.";
+          return prev;
+        }
+
+        return [...prev, { ...item, quantity: 1 }];
       }
+
+      if (existingItem) {
+        return prev.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      }
+
       return [...prev, { ...item, quantity: 1 }];
     });
+
+    setWarning(newWarning);
   };
 
   const updateQuantity = (id, delta) => {
-    setCartItems(prev => prev.map(item => 
-      item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item
-    ));
+    let newWarning = "";
+
+    setCartItems((prev) =>
+      prev.map((item) => {
+        if (item.id !== id) {
+          return item;
+        }
+
+        if (isSubscription(item) && item.quantity + delta > 1) {
+          newWarning = "Only one subscription can be added at a time.";
+          return item;
+        }
+
+        return {
+          ...item,
+          quantity: Math.max(1, item.quantity + delta),
+        };
+      })
+    );
+
+    setWarning(newWarning);
   };
 
   const removeItem = (id) => {
-    setCartItems(prev => prev.filter(item => item.id !== id));
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    setWarning("");
   };
 
-  const totalPrice = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, updateQuantity, removeItem, totalPrice }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        updateQuantity,
+        removeItem,
+        totalPrice,
+        warning,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
-};
+}
