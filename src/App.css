@@ -212,3 +212,9 @@ select {
   border-radius: 8px;
   border: none;
 }
+
+.warning-label {
+  color: #b00020;
+  font-weight: 600;
+  margin: 1rem 0;
+}
