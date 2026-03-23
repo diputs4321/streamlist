@@ -2,7 +2,18 @@ import { Routes, Route } from "react-router";
 import Navbar from "./components/Navbar";
 import StreamList from "./pages/StreamList";
 import Movies from "./pages/Movies";
-import Cart from "./pages/Cart";
+import { CartProvider } from './CartContext';
+// ... other imports
+
+function App() {
+  return (
+    <CartProvider>
+      <div className="App">
+        {/* Your existing components like Navbar and Routes */}
+      </div>
+    </CartProvider>
+  );
+}
 import About from "./pages/About";
 import "./App.css";
 
