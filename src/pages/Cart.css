@@ -1,0 +1,43 @@
+.stream-cart {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.cart-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2a2a2a;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-left: 5px solid #e50914; /* Netflix Red style */
+  border-radius: 5px;
+}
+
+.controls button {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-btn {
+  background: transparent;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.delete-btn:hover {
+  background: #ff4d4d;
+  color: white;
+}
