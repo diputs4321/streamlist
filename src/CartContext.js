@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useLocation } from "react-router";
 
 export const CartContext = createContext();
 
@@ -10,15 +9,10 @@ export function CartProvider({ children }) {
   });
 
   const [warning, setWarning] = useState("");
-  const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem("streamCart", JSON.stringify(cartItems));
   }, [cartItems]);
-
-  useEffect(() => {
-    setWarning("");
-  }, [location.pathname]);
 
   const isSubscription = (item) => item.id >= 1 && item.id <= 4;
 
