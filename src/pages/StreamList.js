@@ -1,18 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 function StreamList() {
   const [userInput, setUserInput] = useState("");
-  const [items, setItems] = useState(() => {
-    const savedItems = localStorage.getItem("streamlistItems");
-    return savedItems ? JSON.parse(savedItems) : [];
-  });
+  const [items, setItems] = useLocalStorage("streamlistItems", []);
 
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
-
-  useEffect(() => {
-    localStorage.setItem("streamlistItems", JSON.stringify(items));
-  }, [items]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

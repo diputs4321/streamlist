@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
+import { formatPrice } from "../utils/formatPrice";
 import "./Cart.css";
 
 function Cart() {
@@ -21,7 +22,7 @@ function Cart() {
               <div>
                 <h4>{item.service}</h4>
                 <p>{item.serviceInfo}</p>
-                <p>${item.price.toFixed(2)} each</p>
+                <p>${formatPrice(item.price)} each</p>
               </div>
 
               <div className="controls">
@@ -31,7 +32,7 @@ function Cart() {
               </div>
 
               <div>
-                <p>${(item.price * item.quantity).toFixed(2)}</p>
+                <p>${formatPrice(item.price * item.quantity)}</p>
                 <button
                   className="delete-btn"
                   onClick={() => removeItem(item.id)}
@@ -43,7 +44,7 @@ function Cart() {
           ))}
 
           <div className="cart-footer">
-            <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+            <h3>Total Price: ${formatPrice(totalPrice)}</h3>
           </div>
         </>
       )}

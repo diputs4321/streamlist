@@ -11,16 +11,14 @@ import "./App.css";
 function App() {
   return (
     <CartProvider>
-      <>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<StreamList />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/subscriptions" element={<Subscriptions />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<StreamList />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/subscriptions" element={<Subscriptions />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </CartProvider>
   );
 }

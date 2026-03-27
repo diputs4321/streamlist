@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import list from "../data";
 import { CartContext } from "../CartContext";
+import { formatPrice } from "../utils/formatPrice";
 
 function Subscriptions() {
   const { addToCart, warning } = useContext(CartContext);
@@ -21,7 +22,7 @@ function Subscriptions() {
             <img src={item.img} alt={item.service} />
             <p><strong>{item.service}</strong></p>
             <p>{item.serviceInfo}</p>
-            <p>${item.price.toFixed(2)}</p>
+            <p>${formatPrice(item.price)}</p>
             <button onClick={() => addToCart(item)}>Add to Cart</button>
           </article>
         ))}

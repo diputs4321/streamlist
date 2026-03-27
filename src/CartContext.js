@@ -1,18 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import { MESSAGES } from "./constants/messages";
 
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem("streamCart");
-    return saved ? JSON.parse(saved) : [];
-  });
-
+  const [cartItems, setCartItems] = useLocalStorage("streamCart", []);
   const [warning, setWarning] = useState("");
-
-  useEffect(() => {
-    localStorage.setItem("streamCart", JSON.stringify(cartItems));
-  }, [cartItems]);
 
   const isSubscription = (item) => item.id >= 1 && item.id <= 4;
 
@@ -25,7 +19,7 @@ export function CartProvider({ children }) {
 
       if (isSubscription(item)) {
         if (existingItem || existingSubscription) {
-          newWarning = "Only one subscription can be added at a time.";
+          newWarning = MESSAGES.SUBSCRIPTION_LIMIT;
           return prev;
         }
 
@@ -54,7 +48,7 @@ export function CartProvider({ children }) {
         }
 
         if (isSubscription(item) && item.quantity + delta > 1) {
-          newWarning = "Only one subscription can be added at a time.";
+          newWarning = MESSAGES.SUBSCRIPTION_LIMIT;
           return item;
         }
 
