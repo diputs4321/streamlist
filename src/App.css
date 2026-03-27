@@ -94,15 +94,6 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.event-icon .material-symbols-outlined {
-  font-size: 32px;
-}
-
-.event-date {
-  color: #38bdf8;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
 /* ===== Movies Page Layout ===== */
 .movies-page {
   padding: 2rem;
@@ -196,7 +187,6 @@ select {
 }
 
 .event-card button {
-  font-family: inherit;
   padding: 0.65rem 0.9rem;
   border: none;
   border-radius: 8px;
@@ -207,14 +197,7 @@ select {
 }
 
 .event-card input {
-  font-family: inherit;
   padding: 0.7rem;
   border-radius: 8px;
   border: none;
-}
-
-.warning-label {
-  color: #b00020;
-  font-weight: 600;
-  margin: 1rem 0;
 }

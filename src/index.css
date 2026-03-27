@@ -36,17 +36,3 @@
     "GRAD" 0,
     "opsz" 24;
 }
-
-body {
-  margin: 0;
-  font-family: "Exo 2", Arial, sans-serif;
-  background-color: #f1f5f9;
-  color: #111827;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
