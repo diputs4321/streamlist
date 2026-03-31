@@ -11,6 +11,8 @@ function Login() {
   const [error, setError] = useState("");
   const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
+  console.log("Google Client ID:", process.env.REACT_APP_GOOGLE_CLIENT_ID);
+
   const handleGoogleResponse = useCallback(
     (response) => {
       const profile = parseJwt(response.credential);
@@ -72,8 +74,9 @@ function Login() {
     script.defer = true;
     script.id = "google-gsi-script";
     script.onload = initializeGoogle;
-    script.onerror = () =>
+    script.onerror = () => {
       setError("Google sign-in script failed to load.");
+    };
 
     document.body.appendChild(script);
   }, [clientId, handleGoogleResponse]);
