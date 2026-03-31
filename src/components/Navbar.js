@@ -1,7 +1,10 @@
 import { NavLink } from "react-router";
 import logo from "../assets/images/EZTechMovieLogo.png";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
+  const { user, logout } = useAuth();
+
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -15,6 +18,13 @@ function Navbar() {
         <NavLink to="/subscriptions">Subscriptions</NavLink>
         <NavLink to="/cart">Cart</NavLink>
         <NavLink to="/about">About</NavLink>
+
+        {user && <span>{user.name}</span>}
+        {user && (
+          <button type="button" onClick={logout}>
+            Logout
+          </button>
+        )}
       </div>
     </nav>
   );

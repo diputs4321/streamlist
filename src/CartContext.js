@@ -67,6 +67,11 @@ export function CartProvider({ children }) {
     setWarning("");
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+    setWarning("");
+  };
+
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -79,6 +84,7 @@ export function CartProvider({ children }) {
         addToCart,
         updateQuantity,
         removeItem,
+        clearCart,
         totalPrice,
         warning,
       }}

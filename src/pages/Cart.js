@@ -1,9 +1,11 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router";
 import { CartContext } from "../CartContext";
 import { formatPrice } from "../utils/formatPrice";
 import "./Cart.css";
 
 function Cart() {
+  const navigate = useNavigate();
   const { cartItems, updateQuantity, removeItem, totalPrice, warning } =
     useContext(CartContext);
 
@@ -45,6 +47,9 @@ function Cart() {
 
           <div className="cart-footer">
             <h3>Total Price: ${formatPrice(totalPrice)}</h3>
+            <button onClick={() => navigate("/checkout")}>
+              Checkout with Card
+            </button>
           </div>
         </>
       )}

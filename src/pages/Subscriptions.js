@@ -8,10 +8,10 @@ function Subscriptions() {
 
   return (
     <main className="movies-page">
-      <h1>Subscriptions</h1>
+      <h1>Services</h1>
       <p>
-        Choose one subscription plan, and add EZTech accessories as many times
-        as you want.
+        Choose one subscription service, and add EZTech accessories as many
+        times as you want.
       </p>
 
       {warning && <p className="warning-label">{warning}</p>}
