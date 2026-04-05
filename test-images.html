@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image URL Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #0f172a; color: white; }
+        .test-item { margin: 15px 0; padding: 10px; background: #1e293b; border-radius: 8px; }
+        img { max-width: 200px; max-height: 200px; margin: 10px 0; display: block; }
+        .status { font-weight: bold; }
+        .ok { color: #4ade80; }
+        .broken { color: #f87171; }
+    </style>
+</head>
+<body>
+    <h1>Testing Image URLs from data.js</h1>
+    
+    <div class="test-item">
+        <div><strong>ID 1: Basic Subscription</strong></div>
+        <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3231802/ticket-icon-md.png" 
+             onerror="this.nextElementSibling.innerHTML='<span class=broken>❌ BROKEN</span>'" 
+             onload="this.nextElementSibling.innerHTML='<span class=ok>✅ OK</span>'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="test-item">
+        <div><strong>ID 2: Gold Subscription</strong></div>
+        <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3237088/ticket-icon-md.png" 
+             onerror="this.nextElementSibling.innerHTML='<span class=broken>❌ BROKEN</span>'" 
+             onload="this.nextElementSibling.innerHTML='<span class=ok>✅ OK</span>'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="test-item">
+        <div><strong>ID 3: Premium Subscription</strong></div>
+        <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3258730/ticket-icon-md.png" 
+             onerror="this.nextElementSibling.innerHTML='<span class=broken>❌ BROKEN</span>'" 
+             onload="this.nextElementSibling.innerHTML='<span class=ok>✅ OK</span>'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="test-item">
+        <div><strong>ID 4: Social Media Sharing</strong></div>
+        <img src="https://cdn.creazilla.com/photos/3730387/social-media-1908766_1280-photo-md.jpeg" 
+             onerror="this.nextElementSibling.innerHTML='<span class=broken>❌ BROKEN</span>'" 
+             onload="this.nextElementSibling.innerHTML='<span class=ok>✅ OK</span>'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="test-item">
+        <div><strong>ID 5: EZ Tech T-Shirt</strong></div>
+        <img src="https://cdn.creazilla.com/cliparts/5548105/tie-dye-t-shirt-clipart-md.png" 
+             onerror="this.nextElementSibling.innerHTML='<span class=broken>❌ BROKEN</span>'" 
+             onload="this.nextElementSibling.innerHTML='<span class=ok>✅ OK</span>'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="test-item">
+        <div><strong>ID 6: EZ Techplosion</strong></div>
+        <img src="https://cdn.creazilla.com/cliparts/7487471/tie-dye-t-shirt-clipart-md.png" 
+             onerror="this.nextElementSibling.innerHTML='<span class=broken>❌ BROKEN</span>'" 
+             onload="this.nextElementSibling.innerHTML='<span class=ok>✅ OK</span>'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="test-item">
+        <div><strong>ID 7: EZ Techmerizing</strong></div>
+        <img src="https://cdn.creazilla.com/cliparts/5632313/tie-dye-t-shirt-clipart-sm.png" 
+             onerror="this.nextElementSibling.innerHTML='<span class=broken>❌ BROKEN</span>'" 
+             onload="this.nextElementSibling.innerHTML='<span class=ok>✅ OK</span>'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="test-item">
+        <div><strong>ID 8: EZ Tech Case</strong></div>
+        <img src="https://cdn.creazilla.com/9ef436f9e9e4cf2733c43b7e61d327d2.jpeg" 
+             onerror="this.nextElementSibling.innerHTML='<span class=broken>❌ BROKEN</span>'" 
+             onload="this.nextElementSibling.innerHTML='<span class=ok>✅ OK</span>'">
+        <div class="status">Loading...</div>
+    </div>
+
+</body>
+</html>

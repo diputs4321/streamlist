@@ -1,0 +1,31 @@
+{
+  "id": "/",
+  "short_name": "StreamList",
+  "name": "EZTechMovie StreamList App",
+  "description": "StreamList is a React-based movie tracking and search application for EZTechMovie users.",
+  "icons": [
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-desktop.png",
+      "sizes": "1920x887",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop view of StreamList application"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a"
+}
