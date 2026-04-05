@@ -2,15 +2,32 @@
   padding: 2rem;
   display: grid;
   gap: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .checkout-summary,
 .checkout-form-card,
 .saved-cards-section {
   background: #ffffff;
+  color: #0f172a;
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-summary h1,
+.checkout-form-card h2,
+.saved-cards-section h2 {
+  margin-top: 0;
+  color: #0f172a;
+}
+
+.checkout-summary p,
+.checkout-form-card p,
+.saved-cards-section p,
+.saved-card p {
+  color: #334155;
 }
 
 .checkout-form {
@@ -21,12 +38,20 @@
 .checkout-form label {
   display: grid;
   gap: 0.4rem;
+  color: #334155;
+  font-weight: 600;
 }
 
 .checkout-form input {
   padding: 0.75rem;
   border: 1px solid #cbd5e1;
   border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.checkout-form input::placeholder {
+  color: #94a3b8;
 }
 
 .checkout-actions,
@@ -36,16 +61,35 @@
   flex-wrap: wrap;
 }
 
+.checkout-actions button,
+.saved-card-actions button,
+.complete-checkout-btn {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checkout-actions button[type="button"] {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
 .saved-card {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1rem;
+  background: #f8fafc;
 }
 
 .checkout-message {
   margin-top: 1rem;
   font-weight: 600;
+  color: #0f172a;
 }
 
 .complete-checkout-btn {
